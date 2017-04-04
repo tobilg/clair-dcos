@@ -16,7 +16,8 @@
     "POSTGRES_PASSWORD": "test12345",
     "POSTGRES_DATABASE": "clair-db",
     "POSTGRES_HOST": "postgresql-clair.marathon.l4lb.thisdcos.directory",
-    "POSTGRES_PORT": "5432"
+    "POSTGRES_PORT": "5432",
+    "POSTGRES_TIMEOUT_SECONDS": "30"
   },
   "labels": {
     "HAPROXY_GROUP": "external",
