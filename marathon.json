@@ -6,7 +6,7 @@
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "tobilg/clair-dcos:v2.0.0-rc.0",
+      "image": "tobilg/clair-dcos:latest",
       "network": "HOST",
       "forcePullImage": true
     }
@@ -43,7 +43,7 @@
     {
       "protocol": "HTTP",
       "portIndex": 1,
-      "path": "/",
+      "path": "/health",
       "gracePeriodSeconds": 5,
       "intervalSeconds": 20,
       "maxConsecutiveFailures": 3
