@@ -20,11 +20,11 @@ clair:
     options:
       # PostgreSQL Connection string
       # https://www.postgresql.org/docs/current/static/libpq-connect.html#LIBPQ-CONNSTRING
-      source: host=<% .Env.POSTGRES_HOST %> port=<% .Env.POSTGRES_PORT %> dbname=<% .Env.POSTGRES_DATABASE %> user=<% .Env.POSTGRES_USER %> password=<% .Env.POSTGRES_PASSWORD %> sslmode=<% default .Env.POSTGRES_SSLMODE "disable" %> statement_timeout=<% default .Env.POSTGRES_TIMEOUT 60000 %>
+      source: host=<% .Env.POSTGRES_HOST %> port=<% .Env.POSTGRES_PORT %> dbname=<% .Env.POSTGRES_DATABASE %> user=<% .Env.POSTGRES_USER %> password=<% .Env.POSTGRES_PASSWORD %> sslmode=<% default .Env.POSTGRES_SSLMODE "disable" %> statement_timeout=<% default .Env.POSTGRES_TIMEOUT "60000" %>
 
       # Number of elements kept in the cache
       # Values unlikely to change (e.g. namespaces) are cached in order to save prevent needless roundtrips to the database.
-      cachesize: <% default .Env.CACHE_SIZE 16384 %>
+      cachesize: <% default .Env.CACHE_SIZE "16384" %>
 
   api:
     # API server port
@@ -35,7 +35,7 @@ clair:
     healthport: <% .Env.PORT1 %>
 
     # Deadline before an API request will respond with a 503
-    timeout: <% default .Env.API_TIMEOUT_SECONDS 900 %>s
+    timeout: <% default .Env.API_TIMEOUT_SECONDS "900" %>s
 
     # 32-bit URL-safe base64 key used to encrypt pagination tokens
     # If one is not provided, it will be generated.
@@ -54,14 +54,14 @@ clair:
   updater:
     # Frequency the database will be updated with vulnerabilities from the default data sources
     # The value 0 disables the updater entirely.
-    interval: <% default .Env.UPDATE_INTERVAL_HOURS 2 %>h
+    interval: <% default .Env.UPDATE_INTERVAL_HOURS "2" %>h
 
   notifier:
     # Number of attempts before the notification is marked as failed to be sent
-    attempts: <% default .Env.NOTIFIER_ATTEMPTS 3 %>
+    attempts: <% default .Env.NOTIFIER_ATTEMPTS "3" %>
 
     # Duration before a failed notification is retried
-    renotifyinterval: <% default .Env.NOTIFIER_RENOTIFY_INTERVAL_HOURS 2 %>h
+    renotifyinterval: <% default .Env.NOTIFIER_RENOTIFY_INTERVAL_HOURS "2" %>h
 
     http:
       # Optional endpoint that will receive notifications via POST requests
