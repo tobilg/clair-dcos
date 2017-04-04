@@ -1,0 +1,51 @@
+{
+  "id": "clair",
+  "cpus": 0.5,
+  "mem": 1024.0,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "tobilg/clair-dcos:v2.0.0-rc.0",
+      "network": "HOST",
+      "forcePullImage": true
+    }
+  },
+  "env": {
+    "POSTGRES_USER": "clair",
+    "POSTGRES_PASSWORD": "test12345",
+    "POSTGRES_DATABASE": "clair-db",
+    "POSTGRES_HOST": "postgresql-clair.marathon.l4lb.thisdcos.directory",
+    "POSTGRES_PORT": "5432"
+  },
+  "labels": {
+    "HAPROXY_GROUP": "external",
+    "HAPROXY_0_VHOST": "YOUR_EXTERNAL_LB_HOSTNAME"
+  },
+  "portDefinitions": [
+    {
+      "port": 0,
+      "protocol": "tcp",
+      "name": "http",
+      "labels": {
+        "VIP_0": "clair:80"
+      }
+    },
+    {
+      "port": 0,
+      "protocol": "tcp",
+      "name": "health-check"
+    }
+  ],
+  "requirePorts": false,
+  "healthChecks": [
+    {
+      "protocol": "HTTP",
+      "portIndex": 1,
+      "path": "/",
+      "gracePeriodSeconds": 5,
+      "intervalSeconds": 20,
+      "maxConsecutiveFailures": 3
+    }
+  ]
+}
