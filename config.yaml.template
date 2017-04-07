@@ -15,16 +15,13 @@
 # The values specified here are the default values that Clair uses if no configuration file is specified or if the keys are not defined.
 clair:
   database:
-    # Database driver
-    type: pgsql
-    options:
-      # PostgreSQL Connection string
-      # https://www.postgresql.org/docs/current/static/libpq-connect.html#LIBPQ-CONNSTRING
-      source: host=<% .Env.POSTGRES_HOST %> port=<% .Env.POSTGRES_PORT %> dbname=<% .Env.POSTGRES_DATABASE %> user=<% .Env.POSTGRES_USER %> password=<% .Env.POSTGRES_PASSWORD %> sslmode=<% default .Env.POSTGRES_SSLMODE "disable" %> statement_timeout=<% default .Env.POSTGRES_TIMEOUT "60000" %>
+    # PostgreSQL Connection string
+    # https://www.postgresql.org/docs/current/static/libpq-connect.html#LIBPQ-CONNSTRING
+    source: host=<% .Env.POSTGRES_HOST %> port=<% .Env.POSTGRES_PORT %> dbname=<% .Env.POSTGRES_DATABASE %> user=<% .Env.POSTGRES_USER %> password=<% .Env.POSTGRES_PASSWORD %> sslmode=<% default .Env.POSTGRES_SSLMODE "disable" %> statement_timeout=<% default .Env.POSTGRES_TIMEOUT "60000" %>
 
-      # Number of elements kept in the cache
-      # Values unlikely to change (e.g. namespaces) are cached in order to save prevent needless roundtrips to the database.
-      cachesize: <% default .Env.CACHE_SIZE "16384" %>
+    # Number of elements kept in the cache
+    # Values unlikely to change (e.g. namespaces) are cached in order to save prevent needless roundtrips to the database.
+    cacheSize: <% default .Env.CACHE_SIZE "16384" %>
 
   api:
     # API server port
@@ -61,7 +58,7 @@ clair:
     attempts: <% default .Env.NOTIFIER_ATTEMPTS "3" %>
 
     # Duration before a failed notification is retried
-    renotifyinterval: <% default .Env.NOTIFIER_RENOTIFY_INTERVAL_HOURS "2" %>h
+    renotifyInterval: <% default .Env.NOTIFIER_RENOTIFY_INTERVAL_HOURS "2" %>h
 
     http:
       # Optional endpoint that will receive notifications via POST requests
