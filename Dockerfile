@@ -1,4 +1,4 @@
-FROM quay.io/coreos/clair:1.2.6
+FROM quay.io/coreos/clair:v1.2.6
 
 ENV CLAIR_DCOS_PATH /clair-dcos
 
