@@ -29,7 +29,7 @@
       "protocol": "tcp",
       "name": "http",
       "labels": {
-        "VIP_0": "clair:80"
+        "VIP_0": "clair:6060"
       }
     },
     {
