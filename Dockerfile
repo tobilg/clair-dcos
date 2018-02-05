@@ -1,10 +1,10 @@
-FROM quay.io/coreos/clair:v2.0.0-rc.0
+FROM quay.io/coreos/clair:v2.0.1
 
 ENV CLAIR_DCOS_PATH /clair-dcos
 
 RUN apk add --no-cache wget bash && \
     mkdir -p $CLAIR_DCOS_PATH && \
-    wget -qO- https://github.com/jwilder/dockerize/releases/download/v0.4.0/dockerize-alpine-linux-amd64-v0.4.0.tar.gz | tar xvz -C /usr/local/bin
+    wget -qO- https://github.com/jwilder/dockerize/releases/download/v0.6.0/dockerize-alpine-linux-amd64-v0.6.0.tar.gz | tar xvz -C /usr/local/bin
 
 ADD clair-entrypoint.sh $CLAIR_DCOS_PATH
 
