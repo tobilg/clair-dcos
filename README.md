@@ -22,7 +22,7 @@ Please replace all the values in `<...>` with the real values. If you don't want
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "tobilg/clair-dcos:v2.0.1",
+      "image": "tobilg/clair-dcos:v2.0.5",
       "network": "HOST"
     }
   },
